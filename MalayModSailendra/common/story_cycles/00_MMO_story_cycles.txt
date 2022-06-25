@@ -1,0 +1,7 @@
+﻿story_malay_invasion = {
+	on_setup = {
+		story_owner = { # Start conquest of all of Chola's lands
+			revenge_war_chola_kingdom = yes
+		}
+	}
+}

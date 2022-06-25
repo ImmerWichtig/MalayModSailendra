@@ -1,0 +1,53 @@
+﻿namespace = malay_conversion
+
+malay_conversion.1 = {
+	type = character_event
+	title = malay_conversion.1.t
+	desc = malay_conversion.1.desc
+	theme = culture_change
+	left_portrait = {
+		character = scope:malay_founder
+		animation = personality_bold
+		}
+
+	immediate = {
+		show_as_tooltip = {
+			custom_tooltip = global_culture.custom.merge_culture
+			culture:malay = {
+				get_all_innovations_from = culture:levantine
+				get_all_innovations_from = culture:tamil
+				get_all_innovations_from = culture:norse
+			}
+		}
+	}
+
+	option = {
+		name = malay_conversion.1.a
+	}
+}
+
+malay_conversion.2 = {
+	type = character_event
+	title = malay_conversion.2.t
+	desc = malay_conversion.2.desc
+	theme = culture_change
+	left_portrait = {
+		character = scope:malay_founder
+		animation = personality_bold
+		}
+
+	immediate = {
+		show_as_tooltip = {
+			custom_tooltip = global_culture.custom.merge_culture
+			culture:malay = {
+				get_all_innovations_from = culture:levantine
+				get_all_innovations_from = culture:tamil
+				get_all_innovations_from = culture:norse
+			}
+		}
+	}
+
+	option = {
+		name = malay_conversion.2.a
+	}
+}

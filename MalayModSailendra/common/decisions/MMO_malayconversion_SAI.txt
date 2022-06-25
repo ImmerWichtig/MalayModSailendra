@@ -1,0 +1,173 @@
+﻿exact_revenge_towards_the_cholas = {
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	major = yes
+	
+	ai_check_interval = 120
+
+
+	desc = exact_revenge_towards_the_cholas_desc
+	selection_tooltip = exact_revenge_towards_the_cholas_tooltip
+
+	is_shown = {
+		is_ruler = yes
+		is_landed = yes
+		has_culture = culture:malay
+		NOT = {
+			title:k_tamilakam.holder = root
+			title:k_tamilakam.holder = {
+				liege = root
+			}
+			}
+		
+		 }
+
+	is_valid = {
+		exists = title:k_tamilakam.holder
+	}
+	
+	is_valid_showing_failures_only = {
+		is_capable_adult = yes
+		is_imprisoned = no
+		is_independent_ruler = yes
+		is_at_war = no
+	}
+	
+	effect = {
+		custom_tooltip = exact_revenge_towards_the_cholas_tooltip
+		show_as_tooltip = {
+			revenge_war_chola_kingdom_only = yes
+		}
+		revenge_war_chola_kingdom_only = yes
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}
+
+set_madurai_as_capital = {
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	major = yes
+	
+	ai_check_interval = 60
+
+
+	desc = set_madurai_as_capital_desc
+	selection_tooltip = set_madurai_as_capital_tooltip
+
+	is_shown = {
+		is_ruler = yes
+		is_landed = yes
+		title:e_paramsamudra.holder = root
+		NOT = { capital_county = { this = title:c_madurai } }
+		OR = {
+			title:c_madurai.holder = { 	
+				any_liege_or_above = { this = root }
+			}
+			title:c_madurai.holder = { this = root }
+		}
+		}
+	
+	is_valid_showing_failures_only = {
+		is_capable_adult = yes
+		is_imprisoned = no
+		is_independent_ruler = yes
+		is_at_war = no
+	}
+	
+	effect = {
+		if = { #Usurp if not held personally.
+			limit = {
+				NOT = { title:c_madurai.holder = { this = root } }
+			}
+			create_title_and_vassal_change = {
+				type = returned
+				save_scope_as = change
+				add_claim_on_loss = no
+			}
+			title:c_madurai = {
+				change_title_holder = {
+					holder = root
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+
+		}
+		set_realm_capital = title:c_madurai
+	}
+	
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}
+
+establish_malay_supremacy = {
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	major = yes
+	
+	ai_check_interval = 120
+
+
+	desc = establish_malay_supremacy_desc
+	selection_tooltip = establish_malay_supremacy_tooltip
+
+	is_shown = {
+		is_ruler = yes
+		is_landed = yes
+		title:e_paramsamudra.holder = root
+		NOT = {  #Can only do it once.
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_malay_supremacy
+			}
+		}
+		}
+
+	is_valid = {
+		completely_controls = title:c_madurai
+		title:c_madurai = { title_held_years >= 5}
+		prestige_level >= max_prestige_level
+	}
+	
+	is_valid_showing_failures_only = {
+		is_capable_adult = yes
+		is_imprisoned = no
+		is_independent_ruler = yes
+		is_at_war = no
+	}
+	
+	effect = {
+		title:e_paramsamudra.holder = {
+			save_scope_as = vijayavarman
+			}
+		change_development_in_madurai = yes
+		trigger_event = {
+			id = malay_invasion.3001
+			days = { 2 60 }
+		}
+		hidden_effect = {
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_malay_supremacy
+			}
+		}
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

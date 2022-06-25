@@ -1,0 +1,304 @@
+﻿namespace = malay_invasion
+
+#######
+#Traders from Far East...
+# After the sack of Sriwijaya by Rajendra Chola I [Historical ID: 189040] (malayanised as Raja Chulan) in 1014, 
+# the King of Sriwijaya starts planning a large scale invasion as revenge.
+#######
+
+# Arc 01: Jong from the East
+
+malay_invasion.0001 = { # Jong from the East, start from here!
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		debug_log = "Malays appeared!"
+		debug_log_date = yes
+		spawn_sailendra_character_effect = yes
+		scope:vijayavarman = {
+			save_scope_as = story_owner # Do I really need to do this? Isn't it set automatically?
+			create_story = story_malay_invasion
+		}
+	}
+}
+
+malay_invasion.0100 = {
+	hidden = yes
+	immediate = {
+		spawn_melayu_troops_effect = yes
+	}
+}
+
+# Malay comes!
+
+malay_invasion.1001 = { #Not standalone
+	type = character_event
+	title = malay_invasion.1001.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					any_realm_province = {
+						OR = {
+							geographical_region = world_india_deccan
+							geographical_region = world_india_bengal
+						}
+					}
+				}
+				desc = {
+					desc = malay_invasion.1001.desc.close
+			}
+			}
+			desc = malay_invasion.1001.desc.far
+		}
+	}
+	theme = war
+	override_background = {
+		reference = docks
+	}
+	left_portrait = scope:vijayavarman
+	
+	option = { # Option for Chola and nearby Deccan Empire
+		name = {
+			trigger = { has_trait = craven }
+			text = malay_invasion.1001.craven
+		}
+		name = {
+			text = malay_invasion.1001.a
+		}
+		exclusive = yes
+		trigger = {
+			any_realm_province = {
+				geographical_region = world_india_deccan
+			}
+		}
+		custom_tooltip = malay_invasion.1001.vijayavarman.tt
+	}
+
+	option = { # Options for distant characters
+		name = {
+			text = malay_invasion.1001.b
+		}
+		custom_tooltip = malay_invasion.1001.vijayavarman_tt
+	}
+}
+
+#########################
+# Arc 2: Revenge against the Cholas
+# 1100 - 1999
+# Story: Cholas needs to be destroyed, no force spared!
+#########################
+
+# The Maharaja demands subjugation! (Others)
+malay_invasion.1100 = {
+	type = letter_event
+	opening = malay_invasion.1100.opening
+	desc = malay_invasion.1100.desc
+	sender = {
+		character = scope:malay_emperor
+		animation = personality_bold
+	}
+	
+	trigger = {
+		NOT = { root = scope:malay_emperor }
+	}
+
+	immediate = {
+		save_scope_as = demand_recipient
+	}
+
+	option = { # Submit
+		name = malay_invasion.1100.a
+		custom_tooltip = malay_invasion.1100.a.tt
+		hidden_effect = {
+			scope:malay_emperor = {
+				trigger_event = malay_invasion.1101
+			}
+		}
+		ai_chance = {
+		base = 100
+			# More likely if you're just a count
+			modifier = {
+				add = 1000
+				highest_held_title_tier = tier_county
+			}
+			# More likely if you're a duke
+			modifier = {
+				add = 400
+				highest_held_title_tier = tier_duchy
+			}
+			# Unlikely if you're Arrogant
+			modifier = {
+				factor = 0.2
+				has_trait = arrogant
+			}
+			# Unlikely if you're brave
+			modifier = {
+				factor = 0.2
+				has_trait = brave
+			}
+			# Likely if you're a Craven
+			modifier = {
+				factor = 2
+				has_trait = craven
+			}
+			# Lower chance if you're decently large
+			modifier = {
+				factor = 0.5
+				realm_size >= 35 # Poland-sized
+			}
+			# No chance of accepting if you're large
+			modifier = {
+				factor = 0
+				realm_size >= 55 # Hungary-sized
+			}
+			# No chance if you're Chola dynasty
+			modifier = {
+				factor = 0
+				dynasty = dynn_Chola
+			}
+		}
+	}
+
+	option = {
+		name = malay_invasion.1100.b
+		add_internal_flag = dangerous
+		custom_tooltip = malay_invasion.1100.b.tt
+		hidden_effect = {
+			scope:malay_emperor = {
+				trigger_event = malay_invasion.1102
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+# 1101: Nice, u accepted.
+
+malay_invasion.1101 = {
+	type = letter_event
+	opening = malay_invasion.1101.opening
+	desc = malay_invasion.1101.desc
+	sender = scope:demand_recipient
+
+	immediate = {
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = title_change
+			add_claim_on_loss = no
+		}
+		scope:demand_recipient = {
+			change_liege = {
+				liege = root
+				change = scope:title_change
+			}
+		}
+		resolve_title_and_vassal_change = scope:title_change
+		debug_log = "Someone accepted Malay subjugation"
+		debug_log_scopes = yes
+	}
+
+	option = { # Wise choice
+		name = malay_invasion.1101.a
+	}
+}
+
+# 1102: I've been waiting for this, its time to WAR!
+
+malay_invasion.1102 = {
+	type = letter_event
+	opening = malay_invasion.1102.opening
+	desc = malay_invasion.1102.desc
+	sender = {
+		character = scope:demand_recipient
+		animation = personality_bold
+	}
+
+	immediate = {
+		debug_log = "Someone refused Malay subjugation"
+		debug_log_scopes = yes
+	}
+
+	# War it is
+	option = {
+		name = malay_invasion.1102.a
+		start_war = {
+			cb = sriwijaya_revenge_war
+			target = scope:demand_recipient
+			target_title = scope:demand_recipient.kingdom
+		}
+		every_player = { trigger_event = { id = malay_invasion.2000 } }
+		ai_chance = {
+			base = 100
+		}
+	}
+
+	# Just you wait...
+	option = {
+		name = malay_invasion.1102.b
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#########################
+# Event announcer: Arc 2
+# id: 2000-2999
+##########################
+
+
+#############################
+# Arc 3: Malay supremacy in Madurai
+# id 3000-3999
+############################
+
+#3001: EVENT: After Madurai controlled for 5 years - change culture to Malay, decrease development in other provinces by 1, increase development in Madurai by half of total provinces.
+#3002: DECISION: Development over 40: Add special building - Trade emissary and unlock interaction
+#3003: Bonus in conversion to ruler religion and culture for 50 years.
+#3004: 
+#3101: Fief to the Mainland: choose levies or gold to send to mainland, ignorance provokes the Emperor in the East (increasing discontent)
+#3102: Trigger civil war, new leader comes in with bonus levies. if done and win, no civil war (from East) for 50 years.
+#3103: DECISION: During these 50 years, 50% levies and large civil war can be used to conquer the East: Bonus gain from winning: prestige, gold and trait. losing: title lose, entire dynasty killed.
+#3201: Tamil merchants: welcome them for popular opinion and reduced taxes, or oppress them for reduced popular opinion and increase taxes for 3 years.
+
+malay_invasion.3001 = {
+	type = character_event
+	title = malay_invasion.3001.t
+	desc = malay_invasion.3001.d
+	theme = stewardship_domain_focus
+	override_background = {
+		reference = docks
+	}
+	left_portrait = scope:vijayavarman
+	
+
+	immediate = {
+	title:c_madurai = {
+		change_development_level = 12
+		set_county_culture = culture:malay
+		set_county_faith = scope:vijayavarman.faith
+	}
+	play_music_cue = "mx_cue_general_crusade_event_2"
+	}
+	
+	option = {
+	name = malay_invasion.3001.a
+	}
+}
+
+########################################
+# Arc 4: Global Trade
+# id 4000-4999
+#######################################
+#4001: Request trade with other top liege for 2000 gold:
+# x: only on coastal provinces within diplomatic range
+# bonus: trade port special building (3-12 gold/month, development rate +5%-+20% as long as Paramsamudra is not at war and positive relation. ) Paramsamudra recieve +50% diplomatic range for #every trade port built, disabled when at war.
+
+
+
+
+#

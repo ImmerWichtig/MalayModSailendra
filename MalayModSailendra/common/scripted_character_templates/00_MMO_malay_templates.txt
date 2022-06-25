@@ -1,0 +1,112 @@
+﻿vijayavarman_character_template = {
+	age = 29 # Wijayavarman's age around 1157
+	gender = male
+	dynasty_house = house:house_sailendra
+	martial = 15
+	diplomacy = 12
+	intrigue = 9
+	stewardship = 12
+	learning = 12
+	prowess = 35
+	faith = "mahayana"
+	culture = culture:malay
+	trait = intellect_good_3
+	trait = ambitious
+	trait = vengeful
+	trait = callous
+	trait = physique_good_2
+	trait = education_martial_4
+	trait = military_engineer
+	trait = open_terrain_expert
+	random_traits = no
+}
+
+wishnuputeri_character_template = {
+	age = 25
+	gender = female
+	dynasty_house = house:house_sailendra
+	faith = "mahayana"
+	culture = culture:malay
+	trait = physique_good_2
+	trait = shrewd
+	trait = calm
+	trait = callous
+	trait = gregarious
+	trait = education_diplomacy_4
+	martial = {
+		min_template_high_skill
+		max_template_high_skill
+	}
+	prowess = 30
+	diplomacy = 12
+	intrigue = 12
+	learning = 9
+	stewardship = 10
+	random_traits = no
+}
+
+tungganegara_character_template = { 
+	age = 11
+	gender = male
+	dynasty_house = house:house_sailendra
+	faith = "mahayana"
+	culture = culture:malay
+	trait = pensive
+	trait = intellect_good_2
+	trait = physique_good_3
+	trait = calm
+	random_traits = no
+	prowess = 20
+}
+
+indraputri_character_template = { 
+	age = 6
+	gender = female
+	dynasty_house = house:house_sailendra
+	faith = "mahayana"
+	culture = culture:malay
+	trait = intellect_good_3
+	trait = physique_good_2
+	trait = rowdy
+	random_traits = no
+	prowess = 20
+}
+
+pujanggadewi_character_template = {
+	age = 5
+	gender = female
+	dynasty_house = house:house_sailendra
+	faith = "mahayana"
+	culture = culture:malay
+	trait = rowdy
+	trait = intellect_good_2
+	trait = physique_good_3
+	trait = twin
+	random_traits = no
+	prowess = 20
+}
+
+garung_character_template = {
+	age = 5
+	gender = male
+	dynasty_house = house:house_sailendra
+	faith = "mahayana"
+	culture = culture:malay
+	trait = intellect_good_2
+	trait = physique_good_3
+	trait = rowdy
+	trait = twin
+	random_traits = no
+}
+
+pramowardhani_character_template = {
+	age = 3
+	gender = male
+	dynasty_house = house:house_sailendra
+	faith = "mahayana"
+	trait = intellect_good_2
+	trait = physique_good_3
+	culture = culture:malay
+	trait = bossy
+	random_traits = no
+}

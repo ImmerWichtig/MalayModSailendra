@@ -1,0 +1,36 @@
+﻿yearly_global_pulse = {
+		effect = {
+		if = {
+				limit = {
+					current_date > 1066.1.1
+					current_date < 1099.1.1
+					NOT = { has_global_variable = malays_have_appeared }
+				}
+				debug_log = "Checking for chance of spawning malays under historical settings"
+				random = {
+					chance = 50 
+					modifier = {
+						add = 10
+						current_date > 1066.1.1
+					}
+					modifier = {
+						add = 20
+						current_date > 1068.1.1
+					}
+					modifier = {
+						add = 10
+						current_date > 1069.6.1
+					}
+					set_global_variable = {
+						name = malays_have_appeared
+						value = yes
+					}
+					debug_log = "Attempting to spawn malay invasion within 120 days"
+					trigger_event = {
+						id = malay_invasion.0001
+						days = { 2 120 }
+					}
+				}
+		}
+}
+}

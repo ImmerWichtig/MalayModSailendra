@@ -1,0 +1,92 @@
+﻿malay_group = {
+	
+	graphical_cultures = {
+		burman_group_coa_gfx
+		indian_building_gfx
+		indian_clothing_gfx
+		indian_unit_gfx
+	}
+	
+	mercenary_names = {
+		{ name = "pahlawan_melayu_1" }
+		{ name = "pahlawan_melayu_2" }
+		{ name = "pahlawan_melayu_3" }
+	}
+
+	malay = {
+		
+		color = { 0.35 0.6 0.1 }
+
+		cadet_dynasty_names = {
+			"dynn_Langkasuka"
+			"dynn_Sukabumi"
+			"dynn_Bahtera"
+			"dynn_Bumi_Emas"
+			"dynn_Mahakuasa"
+			"dynn_Tujuh_Petala"
+			"dynn_Anak_Bukit"
+			"dynn_Seriwijaya"
+			"dynn_Perak"
+			"dynn_Mahawangsa"
+			"dynn_Gangganegara"
+			"dynn_Seribu_Batu"
+			"dynn_Gajah_Duduk"
+			"dynn_Tanjung_Puteri"
+			"dynn_Singgahsana"
+			"dynn_Seguntang"
+			"dynn_Bagus"
+		}
+
+		dynasty_names = {
+			"dynn_Langkasuka"
+			"dynn_Sukabumi"
+			"dynn_Bahtera"
+			"dynn_Bumi_Emas"
+			"dynn_Mahakuasa"
+			"dynn_Tujuh_Petala"
+			"dynn_Anak_Bukit"
+			"dynn_Seriwijaya"
+			"dynn_Perak"
+			"dynn_Mahawangsa"
+			"dynn_Gangganegara"
+			"dynn_Seribu_Batu"
+			"dynn_Gajah_Duduk"
+			"dynn_Tanjung_Puteri"
+			"dynn_Singgahsana"
+			"dynn_Seguntang"
+			"dynn_Wishnuputera"
+			"dynn_Bagus"
+		}
+
+		male_names = { 
+			2 = { Elham Ismail Ishak Joraini Sebli Awang Ratna Zarif Izzudin Arif Bukhari Amir Alif Arjuna Mahmud Roslan Idris Shah Zainal Yusof Mustafa Anuar Zaiful Zafrul Muhyiddin Mazlan Johari Azmin Azmi Ikhwan Aqasha Zafran Haziq Harris }
+			1 = { Jebat Tuah Andika Bayu Purnama Panji Armada Wira Adiwarna Sulong Awang Mat Bonjol Markoni Widodo Joni Kalomata Garuda Elang Irwanshah Agus Suntoso Cuyy Mantul}
+		}
+		female_names = {
+			8 = { Multiah Dayang Annisa Nurin Diyan Sara }
+			4 = { Nadhirah Nadiah Insyirah Ayu Asmara Izyan Aimi Qaisara Alina Mira Amira Sarah Natasha Nurul Balqis Sofia Farahin Aida Ieda Fatin Puteri Jasmine Amiza Zahirah Sharifah Najihah Aini Nadhrah Syazwina Adriana } 
+			1 = { Bunga Melur Cempaka Anggerik Kenanga Mawar Melati Cengkih Ratna Intan Noorkumalasari Seri Kamala Suketi}
+		}
+		
+		character_modifier = {
+		same_culture_opinion = 20
+		different_culture_opinion = -20
+		different_faith_opinion = 20
+		}
+		
+		dynasty_of_location_prefix = "dynnp_anak"
+		founder_named_dynasties = yes
+		
+		pat_grf_name_chance = 40
+		mat_grf_name_chance = 10
+		father_name_chance = 20
+		
+		pat_grm_name_chance = 10
+		mat_grm_name_chance = 40
+		mother_name_chance = 20
+		
+		ethnicities = {
+			10 = malay
+		}
+	}
+}

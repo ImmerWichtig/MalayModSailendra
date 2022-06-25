@@ -1,0 +1,23 @@
+﻿l_english:
+ #Malay Group
+ malay_group:0 "Melayu"
+ malay_group_collective_noun:1 "Orang Melayu"
+ malay:0 "Malay"
+ malay_collective_noun:1 "Malays"
+ #Men-at-arms
+ innovation_kris_technology:0 "Keris"
+ innovation_kris_technology_desc:0 "While kris (Keris in modern Malay spelling) has been bread and butter of the Malayan army, it is said that each kris have its own spiritual properties, depending on the user. Each person hold 3 kris, one of himself, one from his ancestors and one from his father-in-law."
+ kris_swordsman:0 "Kris Swordsman"
+ kris_swordsman_flavor:0 "Kris Swordsmen are chosen among the best warriors in the realm. To ensure their loyalty, the ruler usually place a curse as we as blessing."
+ kris_archer:0 "Kris Archer"
+ kris_archer_flavor:0 "Kris Archer are supporting troops, its main task is to protect Kris Swordsmen from large troops, as well as covering paths."
+ #Casus-bellum
+ sriwijaya_revenge_war_NAME:0 "Sriwijaya Revenge War"
+ sriwijaya_revenge_war_CB_NAME:0 "Sriwijaya Revenge"
+ #Traits
+ trait_sriwijaya_assertion:0 "Sriwijaya Assertion"
+ trait_sriwijaya_assertion_character_desc:0 "His goal is one: to reclaim their pride as the prominent maritime empire in Asia."
+ #landedtitles
+ e_paramsamudra:0 "Paramsamudra"
+ #eventtroops
+ malay_event_troops:0 "Sriwijaya Elites"

@@ -1,0 +1,50 @@
+﻿#standard cost
+@maa_buy_cost = 150
+@maa_low_maintenance_cost = 0.5
+@maa_high_maintenance_cost = 2.5
+@cultural_maa_extra_ai_score = 60
+
+kris_swordsman = {
+	type = skirmishers
+	
+	damage = 45
+	toughness = 45
+	pursuit = 40
+	screen = 40
+	
+	counters = {
+		heavy_infantry = 1
+		archers = 1
+	}
+
+	buy_cost = { gold = 130 }
+	low_maintenance_cost = { gold = @maa_low_maintenance_cost }
+	high_maintenance_cost = { gold = @maa_high_maintenance_cost }
+	
+	stack = 100
+	ai_quality = { value = @cultural_maa_extra_ai_score }
+	icon = skirmishers
+}
+
+kris_archer = {
+	type = archers
+	
+	damage = 35
+	toughness = 15
+	pursuit = 0
+	screen = 22
+	
+	counters = {
+		skirmishers = 1
+		heavy_infantry = 1
+		spearmen = 1
+	}
+
+	buy_cost = { gold = 55 }
+	low_maintenance_cost = { gold = @maa_low_maintenance_cost }
+	high_maintenance_cost = { gold = @maa_high_maintenance_cost }
+	
+	stack = 100
+	ai_quality = { value = @cultural_maa_extra_ai_score }
+	icon = archers
+}

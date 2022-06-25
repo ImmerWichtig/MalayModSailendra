@@ -1,0 +1,10 @@
+mmosailendra001 = { # Sailendra
+	pattern = "pattern_solid.dds"
+	color1 = "black"	
+	color2 = "yellow"		
+	colored_emblem = {
+		texture = "ce_ship_lymphad.dds"
+		color1 = "white"
+		color2 = "red"
+	}
+}

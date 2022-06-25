@@ -1,0 +1,24 @@
+﻿e_paramsamudra = {
+	color = { 65 105 225 }
+	color2 = { 75 0 130 }
+	definite_form = yes
+	
+	ai_primary_priority = {
+		add = 90
+	}
+	
+	capital = c_madurai
+}
+
+e_srivijaya = {
+	color = { 65 105 225 }
+	color2 = { 210 105 30 }
+	definite_form = yes
+	landless = yes
+	
+	capital = c_madurai
+	
+	ai_primary_priority = {
+		add = 90
+	}
+}

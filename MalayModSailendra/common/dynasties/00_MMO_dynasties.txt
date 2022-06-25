@@ -1,0 +1,4 @@
+﻿mmosailendra001 = {
+	name = "Sailendra"
+	culture = "malay"
+}

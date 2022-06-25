@@ -1,0 +1,544 @@
+﻿# Give a suitable County to Sriwijaya
+give_sailendra_land_effect = {
+	# TODO: Good territory selection here (accounting for players)
+	save_scope_as = sailendra
+
+	create_title_and_vassal_change = {
+		type = conquest
+		save_scope_as = title_change
+		add_claim_on_loss = no
+	}
+	title:c_dakhina_desa = {
+		change_title_holder = {
+			holder = scope:sailendra
+			change = scope:title_change
+		}
+	}
+	resolve_title_and_vassal_change = scope:title_change
+}
+
+spawn_sailendra_character_effect = {
+	title:c_dakhina_desa.title_province = {
+		save_scope_as = sailendra_revenge
+	}
+
+	if = {
+		limit = { has_game_rule = inversed_gender_equality }
+		create_character = {
+			name = "Wishnuputeri"
+			gender = female
+			location = scope:sailendra_revenge
+			template = wishnuputeri_character_template
+			save_scope_as = vijayavarman
+		}
+		scope:vijayavarman = {
+			# Make temporarily immune to disease
+			add_character_flag = {
+				flag = immune_to_disease
+				years = 20
+			}
+
+			add_trait = sriwijaya_assertion
+			give_sailendra_land_effect = yes
+			add_gold = 7500
+			add_dread = high_dread
+			spawn_sailendra_court_effect = yes
+			form_the_melayubaru_effect = yes
+			add_prestige = 25000
+			dynasty = {
+				add_dynasty_prestige_level = 5
+				add_dynasty_prestige = 10000
+				add_dynasty_perk = glory_legacy_1
+				add_dynasty_perk = glory_legacy_2
+				add_dynasty_perk = glory_legacy_3
+				add_dynasty_perk = law_legacy_1
+			}
+		}
+	}
+	else_if = {
+		limit = { has_game_rule = full_gender_equality }
+		random_list = {
+			#Female Wishnuputeri.
+			50 = {
+			create_character = {
+			name = "Wishnuputeri" # AKA: Genghis Khan's wife
+			gender = female
+			location = scope:sailendra_revenge
+			template = wishnuputeri_character_template
+			save_scope_as = vijayavarman
+		}
+		scope:vijayavarman = {
+			# Make temporarily immune to disease
+			add_character_flag = {
+				flag = immune_to_disease
+				years = 20
+			}
+
+			add_trait = sriwijaya_assertion
+			give_sailendra_land_effect = yes
+			add_gold = 7500
+			add_dread = high_dread
+			spawn_sailendra_court_effect = yes
+			form_the_melayubaru_effect = yes
+			add_prestige = 25000
+			dynasty = {
+				add_dynasty_prestige_level = 5
+				add_dynasty_prestige = 10000
+				add_dynasty_perk = glory_legacy_1
+				add_dynasty_perk = glory_legacy_2
+				add_dynasty_perk = glory_legacy_3
+				add_dynasty_perk = law_legacy_1
+			}
+		}
+			}
+			#Male Vijayavarman.
+			50 = {
+		create_character = {
+			name = "Vijayavarman"
+			gender = male
+			location = scope:sailendra_revenge
+			template = vijayavarman_character_template
+			save_scope_as = vijayavarman
+		}
+		scope:vijayavarman = {
+			# Make temporarily immune to disease
+			add_character_flag = {
+				flag = immune_to_disease
+				years = 20
+			}
+
+			add_trait = sriwijaya_assertion
+			give_sailendra_land_effect = yes
+			add_gold = 7500
+			add_dread = high_dread
+			spawn_sailendra_court_effect = yes
+			form_the_melayubaru_effect = yes
+			add_prestige = 25000
+			dynasty = {
+				add_dynasty_prestige_level = 5
+				add_dynasty_prestige = 10000
+				add_dynasty_perk = glory_legacy_1
+				add_dynasty_perk = glory_legacy_2
+				add_dynasty_perk = glory_legacy_3
+				add_dynasty_perk = law_legacy_1
+			}
+		}
+			}
+		}
+	}
+	else = {
+		create_character = {
+			name = "Vijayavarman"
+			gender = male
+			location = scope:sailendra_revenge
+			template = vijayavarman_character_template
+			save_scope_as = vijayavarman
+		}
+		scope:vijayavarman = {
+			# Make temporarily immune to disease
+			add_character_flag = {
+				flag = immune_to_disease
+				years = 20
+			}
+
+			add_trait = sriwijaya_assertion
+			give_sailendra_land_effect = yes
+			add_gold = 7500
+			add_dread = high_dread
+			spawn_sailendra_court_effect = yes
+			form_the_melayubaru_effect = yes
+			add_prestige = 25000
+			dynasty = {
+				add_dynasty_prestige_level = 5
+				add_dynasty_prestige = 10000
+				add_dynasty_perk = glory_legacy_1
+				add_dynasty_perk = glory_legacy_2
+				add_dynasty_perk = glory_legacy_3
+				add_dynasty_perk = law_legacy_1
+			}
+		}
+	}
+
+	every_player = {
+		trigger_event = malay_invasion.1001 # Sailendra Revenge
+	}
+}
+
+# Form the actual Malay Empire...
+form_the_melayubaru_effect = {
+	save_scope_as = melayu_founder
+
+	#Create the title
+	create_title_and_vassal_change = {
+		type = created
+		save_scope_as = title_change
+		add_claim_on_loss = no
+	}
+	title:e_paramsamudra = {
+		change_title_holder = {
+			holder = scope:melayu_founder
+			change = scope:title_change
+		}
+	}
+	resolve_title_and_vassal_change = scope:title_change
+
+	add_realm_law_skip_effects = high_partition_succession_law
+
+	assert_if = {
+		limit = { NOT = { exists = title:e_paramsamudra } }
+		text = "Paramsamudra Empire title was not created!"
+	}
+
+	hidden_effect = { set_primary_title_to = title:e_paramsamudra }
+
+	spawn_melayu_troops_effect = yes
+
+	every_held_title = {
+		limit = {
+			tier = tier_empire
+			NOT = { this = title:e_paramsamudra }
+		}
+		scope:melayu_founder = {
+			destroy_title = prev
+		}
+	}
+
+	add_character_modifier = {
+		modifier = sailendra_revenge_empire
+	}
+
+	set_global_variable = {
+		name = melayu_empire_has_spawned
+		value = yes
+	}
+}
+
+## Court
+spawn_sailendra_court_effect = {
+	add_character_flag = is_vijayavarman
+	if = {
+		limit = {
+			scope:vijayavarman = { is_female = yes }
+		}
+		# Create vijayavarman (husband)...
+		create_character = {
+			template = vijayavarman_character_template
+			name = "Vijayavarman" # Husband of vijayavarman
+			employer = scope:vijayavarman
+			save_scope_as = wishnuputeri
+		}
+	}
+	else = {
+		# Create Wishnuputeri (wife)...
+		create_character = {
+			template = wishnuputeri_character_template
+			name = "Wishnuputeri" # Wife of vijayavarman
+			gender = female
+			employer = scope:vijayavarman
+			save_scope_as = wishnuputeri
+		}
+	}
+	scope:wishnuputeri = {
+		marry = scope:vijayavarman
+		# Make temporarily immune to disease
+		add_character_flag = {
+			flag = immune_to_disease
+			years = 15
+		}
+	}
+	if = {
+		limit = {
+			scope:vijayavarman = { is_male = yes }
+		}
+		scope:vijayavarman = { save_scope_as = sailendra_family_father }
+		scope:wishnuputeri = { save_scope_as = sailendra_family_mother }
+	}
+	else = {
+		scope:vijayavarman = { save_scope_as = sailendra_family_mother }
+		scope:wishnuputeri = { save_scope_as = sailendra_family_father }		
+	}
+
+#Sons and Daughters (2 sons, 3 daughters)
+## Tungganegara
+## Indraputri
+## Pujanggadewi
+## Garung
+## Pramowardhani
+
+	create_character = {
+		template = tungganegara_character_template
+		name = "Tungganegara" # (Son of vijayavarman and Borte)
+		employer = scope:vijayavarman
+		mother = scope:sailendra_family_mother
+		father = scope:sailendra_family_father
+		save_scope_as = tungganegara
+	}
+
+	scope:tungganegara = {
+		# Make temporarily immune to disease
+		add_character_flag = {
+			flag = immune_to_disease
+			years = 10
+		}
+	}
+
+	create_character = {
+		template = indraputri_character_template
+		name = "Indraputri" # (Son of vijayavarman)
+		employer = scope:vijayavarman
+		mother = scope:sailendra_family_mother
+		father = scope:sailendra_family_father
+		save_scope_as = indraputri
+	}
+
+	scope:indraputri = {
+		# Make temporarily immune to disease
+		add_character_flag = {
+			flag = immune_to_disease
+			years = 10
+		}
+	}
+	
+	create_character = {
+		template = pujanggadewi_character_template
+		name = "Pujanggadewi" # (Son of vijayavarman)
+		employer = scope:vijayavarman
+		mother = scope:sailendra_family_mother
+		father = scope:sailendra_family_father
+		save_scope_as = pujanggadewi
+	}
+
+	scope:pujanggadewi = {
+		# Make temporarily immune to disease
+		add_character_flag = {
+			flag = immune_to_disease
+			years = 10
+		}
+	}
+	
+	create_character = {
+		template = garung_character_template
+		name = "Garung" # (Son of vijayavarman)
+		employer = scope:vijayavarman
+		mother = scope:sailendra_family_mother
+		father = scope:sailendra_family_father
+		save_scope_as = garung
+	}
+
+	scope:garung = {
+		# Make temporarily immune to disease
+		add_character_flag = {
+			flag = immune_to_disease
+			years = 10
+		}
+	}
+	
+	create_character = {
+		template = pramowardhani_character_template
+		name = "Pramowardhani" # (Son of vijayavarman)
+		employer = scope:vijayavarman
+		mother = scope:sailendra_family_mother
+		father = scope:sailendra_family_father
+		save_scope_as = pramowardhani
+	}
+
+	scope:pramowardhani = {
+		# Make temporarily immune to disease
+		add_character_flag = {
+			flag = immune_to_disease
+			years = 10
+		}
+	}
+	
+## Court, commanders and councillors
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+	create_character = {
+		employer = scope:vijayavarman
+		template = new_warrior_character
+		faith = scope:vijayavarman.faith
+		culture = scope:vijayavarman.culture
+	}
+}
+
+## revenge war against Chola kingdom or foothold in Sri Lanka: if Sinhalese Rebellion wins.
+revenge_war_chola_kingdom = {
+	save_temporary_scope_as = malay_conqueror
+	# Build a list of potential targets
+	every_top_liege_realm_owner = {
+		if = {
+			limit = { 
+				this = title:d_ruhunu
+				}
+			add_to_temporary_list = top_liege_targets
+		}
+	}
+	every_in_list = {
+		list = top_liege_targets
+		save_temporary_scope_as = new_war_target
+		primary_title.empire = { save_temporary_scope_as = war_target_title }
+		# Declare the war
+		scope:malay_conqueror = {
+			start_war = {
+				cb = sriwijaya_revenge_war
+				target = scope:new_war_target.top_liege
+				target_title = scope:war_target_title.empire
+			}
+		}
+	}
+}
+
+revenge_war_chola_kingdom_only = {
+	save_temporary_scope_as = malay_conqueror
+	# Build a list of potential targets
+	every_neighboring_top_liege_realm_owner = {
+		if = {
+			title:k_tamilakam.holder = yes
+			add_to_temporary_list = top_liege_targets
+		}
+	}
+	every_in_list = {
+		list = top_liege_targets
+		save_temporary_scope_as = new_war_target
+		primary_title.empire = { save_temporary_scope_as = war_target_title }
+		# Declare the war
+		scope:malay_conqueror = {
+			start_war = {
+				cb = sriwijaya_revenge_war
+				target = scope:new_war_target.top_liege
+				target_title = scope:war_target_title.empire
+			}
+		}
+	}
+}
+
+change_development_in_madurai = {
+	every_sub_realm_title = {
+			limit = {
+				tier = tier_county
+				NOT = { county = title:c_madurai }
+			}
+			change_development_level = -1
+			}
+}
+	
+
+## Malayan Army
+spawn_melayu_troops_effect = {
+	spawn_army = {
+		uses_supply = no
+		inheritable = no
+		name = "Askar Diraja"
+		men_at_arms = {
+			type = kris_swordsman
+			stacks = 8
+		}
+		men_at_arms = {
+			type = kris_swordsman
+			stacks = 8
+		}
+		men_at_arms = {
+			type = kris_swordsman
+			stacks = 8
+		}
+		men_at_arms = {
+			type = kris_archer
+			stacks = 8
+		}
+		men_at_arms = {
+			type = mangonel
+			stacks = 5
+		}
+		men_at_arms = {
+			type = mangonel
+			stacks = 5
+		}
+		location = capital_province
+	}
+	spawn_army = {
+		uses_supply = no
+		inheritable = no
+		name = "Askar Diraja"
+		levies = {
+			value = 5000
+		}
+		men_at_arms = {
+			type = kris_swordsman
+			stacks = 10
+		}
+		men_at_arms = {
+			type = kris_swordsman
+			stacks = 10
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = light_horsemen
+			stacks = 10
+		}
+		men_at_arms = {
+			type = mangonel
+			stacks = 3
+		}
+		men_at_arms = {
+			type = mangonel
+			stacks = 5
+		}
+		location = capital_province
+	}
+}
+

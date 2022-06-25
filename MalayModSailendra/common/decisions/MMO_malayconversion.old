@@ -1,0 +1,42 @@
+﻿establish_malay_culture_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	major = yes
+
+	desc = establish_malay_culture_decision_desc
+	selection_tooltip = establish_malay_culture_decision_tooltip
+
+	is_shown = {
+		is_ai = no
+		NOT = {
+		has_culture = culture:malay
+		}
+	}
+
+	effect = {
+			every_sub_realm_title = {
+				limit = {
+					tier = tier_county
+				}
+				set_county_culture = culture:malay
+				}
+
+			# Send all players in the game a notification event about the flip.
+			save_scope_as = malay_founder
+		    culture:malay = {
+				get_all_innovations_from = culture:levantine
+				get_all_innovations_from = culture:tamil
+				get_all_innovations_from = culture:norse
+				save_scope_as = new_culture
+			}
+			every_player = {
+				if = {
+					limit = { this = root }
+					trigger_event = malay_conversion.1
+				}
+				else = {
+					trigger_event = malay_conversion.2
+				}
+			}
+			set_country_flag = malay_conversion
+		}
+		}

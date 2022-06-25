@@ -1,0 +1,6 @@
+﻿l_english:
+ establish_malay_culture_decision:0 "Protector of the Malays"
+ establish_malay_culture_decision_desc:0 "Orang Melayu, known for its merchant and seafaring ability, now have created a settlement - much more modernized than our land. These friendly people made me feel at home. I started to feel I am one of them. \n\nMaybe it is time to embrace their culture as my own."
+ establish_malay_culture_decision_tooltip:0 "Become part of Orang Melayu, inside and outside."
+ establish_malay_culture_decision_confirm:0 "Majulah Melayu!"
+ establish_malay_culture_decision_effect.tt:0 "All counties and characters in the realm of [malay_founder:GetFullNameNicknamedRegnal] become [new_culture.GetName]"
